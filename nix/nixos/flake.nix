@@ -20,6 +20,7 @@
     overlayParams = {inherit inputs system;};
     overlaysToApply = [overlays.version-refs];
     overlayMod = {nixpkgs.overlays = overlaysToApply;};
+    commonModules = [./modules overlayMod];
   in {
     overlays = import ./overlays overlayParams;
 
@@ -35,11 +36,10 @@
 
     nixosConfigurations = {
       red-arrow = nixosSystem {
-        modules = [
-          ./hosts/red-arrow/configuration.nix
-          ./modules
-          overlayMod
-        ];
+        modules = [./hosts/red-arrow/configuration.nix] ++ commonModules;
+      };
+      after-velazquez = nixosSystem {
+        modules = [./hosts/after-velazquez/configuration.nix] ++ commonModules;
       };
     };
   };
