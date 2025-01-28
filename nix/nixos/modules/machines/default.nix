@@ -32,6 +32,7 @@
     environment.systemPackages = with pkgs; [
       f2fs-tools
       udisks
+      bluetuith
     ];
   };
 }
