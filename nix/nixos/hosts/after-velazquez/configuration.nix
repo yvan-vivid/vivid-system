@@ -1,7 +1,7 @@
 # Yvan Vivid - 'after-velazquez' NixOS config
 {pkgs, ...}: {
   imports = [
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
