@@ -4,6 +4,9 @@
 #
 # There are some kernel module options here that I'm not sure I need
 {pkgs, ...}: {
+  options = {
+  };
+
   config = {
     # TODO: Do I need this?
     # boot.initrd.kernelModules = ["i915"];
