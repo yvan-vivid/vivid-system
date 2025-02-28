@@ -11,8 +11,5 @@
     usbtop
     usbutils
     pciutils
-
-    # Security
-    gnupg
   ];
 }

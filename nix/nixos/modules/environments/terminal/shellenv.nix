@@ -8,8 +8,9 @@
   };
   environment.systemPackages = with pkgs; [
     sheldon
-    tmuxp
     fzf
-    starship
+    zoxide
+    sesh
+    oh-my-posh
   ];
 }
