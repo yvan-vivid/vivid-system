@@ -29,6 +29,10 @@
       polkit.enable = true;
     };
 
+    programs.gnupg = {
+      agent.enable = true;
+    };
+
     environment.systemPackages = with pkgs; [
       f2fs-tools
       udisks

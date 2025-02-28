@@ -28,5 +28,6 @@ in {
   # Always include these
   config.environment.systemPackages = with pkgs; [
     binutils
+    gcc
   ];
 }
