@@ -29,5 +29,6 @@ in {
   config.environment.systemPackages = with pkgs; [
     binutils
     gcc
+    gnumake
   ];
 }
