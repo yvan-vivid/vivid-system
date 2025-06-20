@@ -5,32 +5,20 @@
     useDHCP = false;
     hosts = {
       "127.0.0.1" = ["localhost.localdomain" "localhost"];
-      "192.168.68.88" = ["burning-pope.localdomain" "burning-pope"];
-      "192.168.68.77" = ["pinky.localdomain" "pinky"];
-      "192.168.68.78" = ["wittie-box.localdomain" "wittie-box"];
-      "192.168.69.88" = ["yvone.localdomain" "yvone"];
+      "192.168.68.66" = ["red-arrow.localdomain" "red-arrow"];
+      "192.168.68.72" = ["after-velazquez.localdomain" "after-velazquez"];
+      "192.168.68.67" = ["wittie-box.localdomain" "wittie-box"];
+      "192.168.69.62" = ["yvone.localdomain" "yvone"];
+      "192.168.68.59" = ["mini.localdomain" "mini"];
+      "192.168.68.56" = ["packard-mill.localdomain" "packard-mill"];
     };
-
-    # From burning-pope
-    # hostName = "burning-pope";
-    # interfaces = {"wlp59s0" = {useDHCP = true;};};
-
-    # From red-arrow
-    # hostName = "red-arrow";
-
-    # From wittie-box
-    # hostName = "wittie-box";
-    # hosts = {
-    #  "127.0.1.1" = ["wittie-box"];
-    # };
-    # interfaces = {
-    #  "wlp2s0" = {useDHCP = true;};
-    # };
 
     firewall = {
       enable = true;
     };
   };
+
+  services.resolved.enable = true;
 
   yvan.users.power-user.groups = [
     "network"

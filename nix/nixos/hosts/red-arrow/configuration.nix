@@ -10,7 +10,7 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
 
   # Non-standard efi boot mount
   boot.loader.efi.efiSysMountPoint = lib.mkForce "/boot/efi";
