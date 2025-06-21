@@ -19,9 +19,6 @@ in {
     environment.systemPackages = with pkgs; [
       git-lfs
       gitAndTools.git-annex
-      gitAndTools.git-annex-utils
-      gitAndTools.git-annex-remote-rclone
-      gitAndTools.git-annex-remote-googledrive
     ];
   };
 }

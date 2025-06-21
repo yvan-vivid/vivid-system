@@ -1,19 +1,6 @@
 # Yvan Vivid - Fonts
 # TODO: Clean up and create options
-{pkgs, ...}: let
-  nerdfontsUsed = [
-    "DejaVuSansMono"
-    #"FantasqueSansMono"
-    "FiraCode"
-    #"Iosevka"
-    "OpenDyslexic"
-  ];
-in {
-  # Overrides
-  nixpkgs.config.packageOverrides = pkgs: {
-    nerdfonts = pkgs.nerdfonts.override {fonts = nerdfontsUsed;};
-  };
-
+{pkgs, ...}: {
   fonts = {
     fontDir.enable = true;
     fontconfig.enable = true;
@@ -21,7 +8,9 @@ in {
     packages = with pkgs; [
       # Should I change these fonts?
       corefonts
-      nerdfonts
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.fira-code
+      nerd-fonts.open-dyslexic
       google-fonts
       #helvetica-neue-lt-std
       #ubuntu_font_family
