@@ -65,110 +65,178 @@
         yvan-production = buildEnv {
           name = "yvan-production";
           paths = [
+            # audio
             audacity
             ardour
             mediainfo
-            cheese
-            fluidsynth
-            soundfont-fluid
             lame
             # zrythm
-            gimp
+
+            # image
+            # gimp
             shotwell
             imagemagick
             inkscape
-            blender
-            darktable
+            # darktable
+
+            # video
             olive-editor
             obs-studio
+
+            # multimedia
+            blender
           ];
         };
 
         yvan-dev-tools = buildEnv {
           name = "yvan-dev-tools";
           paths = [
-            niv
-            shellcheck
             pandoc
             hexyl
-            socat
-            gita
-            tree-sitter
-            gcc
+            # qmk
+            (tex-setup pkgs)
+
+            # package/language managers
+            uv
             luarocks
             rustup
-            qmk
+
+            # rust
+            cargo-info
+            rusty-man
+
+            # linters / formatters
+            prettierd
+            languagetool
+            shellcheck
+            shfmt
+            html-tidy
+            alejandra
+            stylua
+            ruff
+            harper
+            csslint
+
+            # compilers / interpreters
+            tree-sitter
             go
-            uv
+            gcc
+
+            # code management
+            tokei
+            gfold
+
+            # language servers
             bash-language-server
             typescript-language-server
             svelte-language-server
             yaml-language-server
             lua-language-server
             marksman
-            nixd
-            prettierd
-            basedpyright
-            harper
-            shfmt
-            html-tidy
-            alejandra
-            stylua
-            csslint
-            ruff
             texlab
-            pdftk
-            languagetool
-            (tex-setup pkgs)
+            nixd
+            basedpyright
           ];
         };
 
         yvan-term-env = buildEnv {
           name = "yvan-term-env";
           paths = [
+            # shell env
+            fish
+            oh-my-posh
+            sesh
+            zoxide
+
+            # file info
+            eza
+            yazi
+
+            # deduplication
+            duff
+
+            # file size
+            dua
+            du-dust
+
+            # disk usage
+            dysk
+            duf
+
+            # system info
+            neofetch
+            inxi
+
+            # file transfer
+            rclone
+
+            # network
+            socat
+            traceroute
+            xh
+
+            # file tools
+            ansifilter
+            qpdf
+
+            # choosing
+            gum
+
+            # reading/editing
             neovim
             helix
-            traceroute
-            btop
-            bottom
             fx
             glow
-            ueberzugpp
-            zoxide
+
+            # tui apps
+            bottom
+            btop
             systemctl-tui
+            gitui
+
+            # email
             aerc
-            dysk
-            oh-my-posh
-            fish
-            sesh
-            yazi
-            eza
-            rclone
-            duff
+            nomacs
+
+            # utilities
+            ueberzugpp
+            bc
           ];
         };
 
         yvan-apps = buildEnv {
           name = "yvan-apps";
           paths = [
+            # media
             beets
             sioyek
-            yt-dlp
+            obsidian
+
+            # files
             sshfs-fuse
             spacedrive
-            firefox-bin
-            chromium
-            foot
+
+            # ai
+            ollama
+
+            # networking
+            wireguard-tools
+            yt-dlp
+
+            # social networking
+            # zoom-us
             signal-desktop
             discord
             tdesktop
-            zoom-us
-            wireguard-tools
-            obsidian
+
+            # browsers
+            firefox-bin
+            chromium
+
+            # emulation
             gzdoom
             higan
             zsnes
-            ollama
           ];
         };
 

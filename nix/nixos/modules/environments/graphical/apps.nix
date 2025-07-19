@@ -15,9 +15,6 @@ in {
     environment.systemPackages = with pkgs.edge; [
       # browsers
       firefox-bin
-
-      # Comms
-      zoom-us
     ];
   };
 }

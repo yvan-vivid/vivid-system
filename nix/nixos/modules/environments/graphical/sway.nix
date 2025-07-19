@@ -13,9 +13,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.portal = {
-      enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    xdg = {
+      portal = {
+        enable = true;
+        wlr.enable = true;
+      };
+      sounds.enable = true;
+      mime.enable = true;
     };
 
     hardware.brillo.enable = true;
@@ -33,6 +37,7 @@ in {
         # Launch/Notification
         mako
         wofi
+        avizo
 
         # A/V Settings
         pavucontrol
@@ -46,7 +51,6 @@ in {
         grim
         wl-clipboard
         wev
-        wob
 
         # DE Apps
         alacritty
