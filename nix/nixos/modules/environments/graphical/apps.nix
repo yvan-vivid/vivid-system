@@ -15,6 +15,9 @@ in {
     environment.systemPackages = with pkgs.edge; [
       # browsers
       firefox-bin
+
+      # terminals
+      kitty
     ];
   };
 }

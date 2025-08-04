@@ -12,5 +12,6 @@
     fzf
     sesh
     oh-my-posh
+    keychain
   ];
 }

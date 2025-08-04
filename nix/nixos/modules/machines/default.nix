@@ -37,6 +37,10 @@
       f2fs-tools
       udisks
       bluetuith
+
+      # Security
+      pass
+      pinentry
     ];
   };
 }

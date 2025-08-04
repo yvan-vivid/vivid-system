@@ -93,6 +93,7 @@
           paths = [
             pandoc
             hexyl
+            marp-cli
             # qmk
             (tex-setup pkgs)
 
@@ -116,6 +117,7 @@
             ruff
             harper
             csslint
+            taplo
 
             # compilers / interpreters
             tree-sitter
@@ -201,6 +203,7 @@
             # utilities
             ueberzugpp
             bc
+            nh
           ];
         };
 
@@ -222,6 +225,7 @@
             # networking
             wireguard-tools
             yt-dlp
+            gallery-dl
 
             # social networking
             # zoom-us
