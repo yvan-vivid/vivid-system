@@ -10,10 +10,20 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_15;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_6_15;
+
+    kernelParams = [
+      # TODO: Do I need this?
+      # "mem_sleep_default=deep"
+    ];
+  };
 
   # Non-standard efi boot mount
   boot.loader.efi.efiSysMountPoint = lib.mkForce "/boot/efi";
+
+  # For the ambient light sensor
+  hardware.sensor.iio.enable = true;
 
   yvan = {
     name = "red-arrow";

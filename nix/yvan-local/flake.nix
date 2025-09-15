@@ -130,6 +130,7 @@
 
             # language servers
             bash-language-server
+            vscode-langservers-extracted
             typescript-language-server
             svelte-language-server
             yaml-language-server
@@ -204,6 +205,10 @@
             ueberzugpp
             bc
             nh
+
+            # media
+            ffmpeg
+            poppler
           ];
         };
 

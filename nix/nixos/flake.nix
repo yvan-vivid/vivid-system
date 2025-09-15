@@ -1,15 +1,14 @@
 # Yvan Vivid - NixOS Flake
 # Based on some inspirations:
 #   `Misterio77/nix-starter-configs`
-#   `Andrey0189/nixos-config` and other resources
+#   `Andrey0189/nixos-config`
+#   and other resources
 {
   description = "Yvan Vivid's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # Other custom input sources
   };
 
   outputs = inputs: let

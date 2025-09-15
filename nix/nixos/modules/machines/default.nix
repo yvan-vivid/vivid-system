@@ -5,12 +5,11 @@
   ];
 
   config = {
+    # Enable firmware regardless of license
+    hardware.enableAllFirmware = true;
+
     # Bluetooth
     hardware.bluetooth.enable = true;
-
-    # Thunderbolt
-    # TODO: If thunderbolt
-    # services.hardware.bolt.enable = true;
 
     # Power / thermal
     services = {
@@ -40,7 +39,7 @@
 
       # Security
       pass
-      pinentry
+      pinentry-tty
     ];
   };
 }

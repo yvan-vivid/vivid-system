@@ -14,12 +14,14 @@ in {
   config = mkIf cfg.enable {
     # TODO: DE + full fonts
 
-    # Logind tweaks
-    services.logind = {
-      extraConfig = ''
-        HandlePowerKey=suspend
-        HandleLidSwitchExternalPower=ignore
-      '';
+    services = {
+      auto-cpufreq.enable = true;
+      logind = {
+        extraConfig = ''
+          HandlePowerKey=suspend
+          HandleLidSwitchExternalPower=ignore
+        '';
+      };
     };
   };
 }
