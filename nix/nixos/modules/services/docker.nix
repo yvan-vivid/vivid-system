@@ -21,6 +21,7 @@ in {
     ];
     environment.systemPackages = with pkgs; [
       ctop
+      podman-compose
     ];
   };
 }
