@@ -13,8 +13,10 @@ in {
 
   config = mkIf cfg.enable {
     virtualisation = {
-      docker.enable = true;
-      podman.enable = true;
+      podman = {
+        enable = true;
+        dockerCompat = true;
+      };
     };
     yvan.users.power-user.groups = [
       "docker"
