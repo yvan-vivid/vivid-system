@@ -67,7 +67,7 @@
           paths = [
             # audio
             audacity
-            ardour
+            # ardour
             mediainfo
             lame
             # zrythm
@@ -116,7 +116,6 @@
             stylua
             ruff
             harper
-            csslint
             taplo
 
             # compilers / interpreters
@@ -160,7 +159,7 @@
 
             # file size
             dua
-            du-dust
+            dust
 
             # disk usage
             dysk
@@ -236,7 +235,7 @@
             # zoom-us
             signal-desktop
             discord
-            tdesktop
+            telegram-desktop
 
             # browsers
             firefox-bin
