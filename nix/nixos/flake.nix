@@ -40,6 +40,9 @@
       after-velazquez = nixosSystem {
         modules = [./hosts/after-velazquez/configuration.nix] ++ commonModules;
       };
+      wittie-box= nixosSystem {
+        modules = [./hosts/wittie-box/configuration.nix] ++ commonModules;
+      };
     };
   };
 }
