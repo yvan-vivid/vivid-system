@@ -1,4 +1,4 @@
-# Yvan Vivid - 'after-velazquez' NixOS config
+# Yvan Vivid - 'wittie-box' NixOS config
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
@@ -32,8 +32,8 @@
     environments = {
       runtime.enable = true;
       graphical = {
-        sway.enable = false;
-        apps.enable = false;
+        sway.enable = true;
+        apps.enable = true;
       };
     };
   };
