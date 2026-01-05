@@ -11,7 +11,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_15;
+    kernelPackages = pkgs.linuxPackages_6_18;
 
     kernelParams = [
       # TODO: Do I need this?

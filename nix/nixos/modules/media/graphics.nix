@@ -14,12 +14,6 @@
       rocmPackages.clr.icd
       rocmPackages.rocm-runtime
       rocmPackages.rocminfo
-
-      # This is for amd vulkan support
-      amdvlk
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
     ];
   };
 

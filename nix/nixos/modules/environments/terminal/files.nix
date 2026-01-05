@@ -13,7 +13,6 @@
   environment.systemPackages = with pkgs; [
     # File inspection
     file
-    mime-types
     jq
     glow
 

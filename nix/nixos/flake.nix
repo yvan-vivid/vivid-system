@@ -7,7 +7,7 @@
   description = "Yvan Vivid's NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 

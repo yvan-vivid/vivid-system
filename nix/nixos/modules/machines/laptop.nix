@@ -16,12 +16,6 @@ in {
 
     services = {
       auto-cpufreq.enable = true;
-      logind = {
-        extraConfig = ''
-          HandlePowerKey=suspend
-          HandleLidSwitchExternalPower=ignore
-        '';
-      };
     };
   };
 }
