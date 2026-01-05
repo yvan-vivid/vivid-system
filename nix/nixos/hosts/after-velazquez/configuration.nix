@@ -14,8 +14,8 @@
       }
     ];
 
-    allowedTCPPorts = [8096 8020];
-    allowedUDPPorts = [7359];
+    allowedTCPPorts = [80 443 8096 8020 53];
+    allowedUDPPorts = [7359 53 50873];
   };
 
   # this machine easily gets torched
@@ -23,10 +23,18 @@
   boot.kernelParams = [
     "amd_pstate_epp=power"
   ];
+  boot.kernel.sysctl."net.ipv4.ip_forward" = true;
+
+  environment.systemPackages = [
+    pkgs.nginx
+  ];
 
   services = {
     # `thermald` only works for intel
     thermald.enable = false;
+    resolved.extraConfig = ''
+      DNSStubListener=no
+    '';
   };
 
   yvan = {

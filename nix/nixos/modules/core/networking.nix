@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   networking = {
     networkmanager.enable = true;
     iproute2.enable = true;
@@ -18,7 +22,7 @@
     };
   };
 
-  services.resolved.enable = true;
+  services.resolved.enable = lib.mkDefault true;
 
   yvan.users.power-user.groups = [
     "network"
