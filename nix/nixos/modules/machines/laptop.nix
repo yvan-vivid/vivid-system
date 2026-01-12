@@ -16,6 +16,12 @@ in {
 
     services = {
       auto-cpufreq.enable = true;
+      logind.settings.Login = {
+        HandlePowerKey = "suspend";
+        HandleLidSwitch = "suspend";
+        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchDocked = "ignore";
+      };
     };
   };
 }
