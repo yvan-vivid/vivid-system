@@ -20,6 +20,7 @@
   services = {
     # `thermald` only works for intel
     thermald.enable = false;
+    fwupd.enable = true;
   };
 
   yvan = {

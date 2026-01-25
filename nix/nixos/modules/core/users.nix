@@ -26,6 +26,7 @@ in {
     extraGroups =
       [
         "video"
+        "render"
         "input"
         "wheel"
         "fuse"

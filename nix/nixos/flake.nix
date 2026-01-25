@@ -9,6 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs: let
@@ -39,6 +40,14 @@
       };
       after-velazquez = nixosSystem {
         modules = [./hosts/after-velazquez/configuration.nix] ++ commonModules;
+      };
+      glass-armature = nixosSystem {
+        modules =
+          [
+            ./hosts/glass-armature/configuration.nix
+            inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
+          ]
+          ++ commonModules;
       };
     };
   };

@@ -22,15 +22,12 @@
 
     python-packages = py:
       with py; [
-        mypy
         pynvim
-        pylint
         pytest
         ipython
-        pylatexenc
       ];
 
-    python-with-packages = pkgs: ((pkgs.python312.withPackages python-packages).override {
+    python-with-packages = pkgs: ((pkgs.python313.withPackages python-packages).override {
       ignoreCollisions = true;
     });
 
@@ -41,11 +38,6 @@
         typescript
         prettier
       ];
-
-    tex-setup = pkgs:
-      pkgs.texlive.combine {
-        inherit (pkgs.texlive) scheme-basic titlesec xetex collection-latexextra;
-      };
   in {
     packages = forEachSystem ({pkgs}:
       with pkgs; rec {
@@ -53,7 +45,6 @@
           name = "yvan-python-env";
           paths = [
             (python-with-packages pkgs)
-            poetry
           ];
         };
 
@@ -73,14 +64,14 @@
             # zrythm
 
             # image
-            # gimp
+            gimp
             shotwell
             imagemagick
             inkscape
             # darktable
 
             # video
-            olive-editor
+            # olive-editor
             obs-studio
 
             # multimedia
@@ -95,7 +86,6 @@
             hexyl
             marp-cli
             # qmk
-            (tex-setup pkgs)
 
             # package/language managers
             uv
@@ -117,6 +107,8 @@
             ruff
             harper
             taplo
+            ruff
+            ty
 
             # compilers / interpreters
             tree-sitter
@@ -137,7 +129,6 @@
             marksman
             texlab
             nixd
-            basedpyright
           ];
         };
 
