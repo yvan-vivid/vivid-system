@@ -10,7 +10,6 @@ with pkgs;
 
       # files
       sshfs-fuse
-      spacedrive
 
       # ai
       ollama
@@ -36,4 +35,3 @@ with pkgs;
       zsnes
     ];
   }
-

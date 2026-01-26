@@ -3,17 +3,23 @@ with pkgs;
   buildEnv {
     name = "yvan-dev-tools";
     paths = [
+      # python
+      uv
+      ty
+      ruff
+
+      # lua
+      luarocks
+      stylua
+
+      # documentation
       pandoc
       hexyl
       marp-cli
       # qmk
 
-      # package/language managers
-      uv
-      luarocks
-      rustup
-
       # rust
+      rustup
       cargo-info
       rusty-man
 
@@ -24,12 +30,8 @@ with pkgs;
       shfmt
       html-tidy
       alejandra
-      stylua
-      ruff
       harper
       taplo
-      ruff
-      ty
 
       # compilers / interpreters
       tree-sitter
@@ -48,8 +50,6 @@ with pkgs;
       yaml-language-server
       lua-language-server
       marksman
-      texlab
       nixd
     ];
   }
-
