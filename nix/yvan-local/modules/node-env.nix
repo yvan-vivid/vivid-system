@@ -1,14 +1,13 @@
-{pkgs}: let
-  node-packages = pkgs:
-    with pkgs.nodePackages; [
-      pkgs.nodejs
-      eslint
-      typescript
-      prettier
-    ];
-in
-  pkgs.buildEnv {
-    name = "yvan-node-env";
-    paths = node-packages pkgs;
-  }
-
+{...}: {
+  perSystem = {pkgs, ...}: {
+    packages.yvan-node-env = pkgs.buildEnv {
+      name = "yvan-node-env";
+      paths = with pkgs; [
+        nodejs
+        pkgs.nodePackages.eslint
+        nodePackages.typescript
+        nodePackages.prettier
+      ];
+    };
+  };
+}

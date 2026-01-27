@@ -1,71 +1,73 @@
-{pkgs}:
-with pkgs;
-  buildEnv {
-    name = "yvan-term-env";
-    paths = [
-      # shell env
-      fish
-      oh-my-posh
-      sesh
-      zoxide
+{...}: {
+  perSystem = {pkgs, ...}: {
+    packages.yvan-term-env = pkgs.buildEnv {
+      name = "yvan-term-env";
+      paths = with pkgs; [
+        # shell env
+        fish
+        oh-my-posh
+        sesh
+        zoxide
 
-      # file info
-      eza
-      yazi
+        # file info
+        eza
+        yazi
 
-      # deduplication
-      duff
+        # deduplication
+        duff
 
-      # file size
-      dua
-      dust
+        # file size
+        dua
+        dust
 
-      # disk usage
-      dysk
-      duf
+        # disk usage
+        dysk
+        duf
 
-      # system info
-      neofetch
-      inxi
+        # system info
+        neofetch
+        inxi
 
-      # file transfer
-      rclone
+        # file transfer
+        rclone
 
-      # network
-      socat
-      traceroute
-      xh
+        # network
+        socat
+        traceroute
+        xh
 
-      # file tools
-      ansifilter
-      qpdf
+        # file tools
+        ansifilter
+        qpdf
 
-      # choosing
-      gum
+        # choosing
+        gum
 
-      # reading/editing
-      neovim
-      helix
-      fx
-      glow
+        # reading/editing
+        neovim
+        helix
+        fx
+        glow
 
-      # tui apps
-      bottom
-      btop
-      systemctl-tui
-      gitui
+        # tui apps
+        bottom
+        btop
+        systemctl-tui
+        gitui
 
-      # email
-      aerc
-      nomacs
+        # email
+        aerc
+        nomacs
 
-      # utilities
-      ueberzugpp
-      bc
-      nh
+        # utilities
+        ueberzugpp
+        bc
+        nh
 
-      # media
-      ffmpeg
-      poppler
-    ];
-  }
+        # media
+        ffmpeg
+        poppler
+      ];
+    };
+  };
+}
