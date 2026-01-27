@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   perSystem = {pkgs, ...}: {
     packages.yvan-dev-tools = pkgs.buildEnv {
       name = "yvan-dev-tools";
@@ -51,6 +51,9 @@
         lua-language-server
         marksman
         nixd
+
+        # AI/ML development
+        inputs.opencode.packages."${pkgs.system}".default
       ];
     };
   };

@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    opencode.url = "github:anomalyco/opencode";
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -20,11 +21,17 @@
         ./modules/combined.nix
       ];
 
-      perSystem = {system, ...}: {
+      perSystem = {
+        config,
+        system,
+        ...
+      }: {
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           config.allowUnfree = true;
         };
+
+        packages.default = config.packages.yvan-local;
       };
     };
 }
