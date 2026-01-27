@@ -1,7 +1,12 @@
 # Yvan Vivid - 'glass-armature' NixOS config
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;

@@ -6,6 +6,9 @@ FLAKE := ".\#$(HOSTNAME)"
 all: check
 
 check:
+	nix flake check --all-systems
+
+check-local:
 	nix flake check
 
 dry-build:

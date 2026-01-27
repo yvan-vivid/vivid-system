@@ -1,8 +1,3 @@
-# Yvan Vivid - NixOS Flake
-# Based on some inspirations:
-#   `Misterio77/nix-starter-configs`
-#   `Andrey0189/nixos-config`
-#   and other resources
 {
   description = "Yvan Vivid's NixOS Configuration";
 
@@ -16,39 +11,25 @@
     inherit (inputs.self) overlays;
     inherit (inputs.nixpkgs) lib;
     inherit (lib) nixosSystem;
+    inherit (builtins) attrNames readDir listToAttrs;
     system = "x86_64-linux";
     overlayParams = {inherit inputs system;};
     overlaysToApply = [overlays.version-refs];
     overlayMod = {nixpkgs.overlays = overlaysToApply;};
     commonModules = [./modules overlayMod];
+    hostDirs = attrNames (readDir ./hosts);
+    buildHost = host:
+      nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/${host}/configuration.nix] ++ commonModules;
+      };
+    buildHostKV = host: {
+      name = host;
+      value = buildHost host;
+    };
   in {
     overlays = import ./overlays overlayParams;
-
-    # Your custom packages
-    # packages = import ./pkgs inputs.nixos.legacyPackages.${system};
-
-    # Formatter for your nix files, available through 'nix fmt'
-    # formatter = edge.legacyPackages.${system}.alejandra;
-
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    # nixosModules = import ./modules/nixos;
-
-    nixosConfigurations = {
-      red-arrow = nixosSystem {
-        modules = [./hosts/red-arrow/configuration.nix] ++ commonModules;
-      };
-      after-velazquez = nixosSystem {
-        modules = [./hosts/after-velazquez/configuration.nix] ++ commonModules;
-      };
-      glass-armature = nixosSystem {
-        modules =
-          [
-            ./hosts/glass-armature/configuration.nix
-            inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
-          ]
-          ++ commonModules;
-      };
-    };
+    nixosConfigurations = listToAttrs (map buildHostKV hostDirs);
   };
 }
