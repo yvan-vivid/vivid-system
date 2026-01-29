@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  pkgs-edge,
   ...
 }: let
   cfg = config.yvan.environments.graphical.apps;
@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs.edge; [
+    environment.systemPackages = with pkgs-edge; [
       # browsers
       firefox-bin
 

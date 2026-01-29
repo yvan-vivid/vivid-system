@@ -8,20 +8,20 @@
   };
 
   outputs = inputs: let
-    inherit (inputs.self) overlays;
     inherit (inputs.nixpkgs) lib;
     inherit (lib) nixosSystem;
     inherit (builtins) attrNames readDir listToAttrs;
     system = "x86_64-linux";
-    overlayParams = {inherit inputs system;};
-    overlaysToApply = [overlays.version-refs];
-    overlayMod = {nixpkgs.overlays = overlaysToApply;};
-    commonModules = [./modules overlayMod];
+    pkgs-edge = import inputs.nixpkgs-edge {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    commonModules = [./modules];
     hostDirs = attrNames (readDir ./hosts);
     buildHost = host:
       nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        inherit system;
+        specialArgs = {inherit inputs pkgs-edge;};
         modules = [./hosts/${host}/configuration.nix] ++ commonModules;
       };
     buildHostKV = host: {
@@ -29,7 +29,6 @@
       value = buildHost host;
     };
   in {
-    overlays = import ./overlays overlayParams;
     nixosConfigurations = listToAttrs (map buildHostKV hostDirs);
   };
 }
