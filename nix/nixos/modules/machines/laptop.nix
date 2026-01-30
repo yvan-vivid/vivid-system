@@ -12,7 +12,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO: DE + full fonts
+    # Enable all media modules for laptop
+    yvan.media = {
+      audio.enable = true;
+      graphics.enable = true;
+      fonts.enable = true;
+    };
 
     services = {
       auto-cpufreq.enable = true;

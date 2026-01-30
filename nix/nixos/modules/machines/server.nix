@@ -14,6 +14,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Server specific options
+    # Enable all media modules for server
+    # NOTE: This may change later as server needs evolve
+    yvan.media = {
+      audio.enable = true;
+      graphics.enable = true;
+      fonts.enable = true;
+    };
   };
 }
