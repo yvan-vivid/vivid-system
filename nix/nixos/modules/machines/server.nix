@@ -8,7 +8,9 @@
   cfg = config.yvan.machine.server;
 in {
   options = {
-    cfg.enable = mkEnableOption "Server setup";
+    yvan.machine.server = {
+      enable = mkEnableOption "Server setup";
+    };
   };
 
   config = mkIf cfg.enable {
