@@ -11,15 +11,6 @@
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 
-  networking.firewall = {
-    allowedTCPPortRanges = [
-      {
-        from = 13000;
-        to = 13999;
-      }
-    ];
-  };
-
   # boot.kernelParams = [];
 
   services = {
@@ -32,6 +23,7 @@
     name = "glass-armature";
     primary = "hexxiiiz";
 
+    machine.server.enable = true;
     dev.full = true;
 
     services = {

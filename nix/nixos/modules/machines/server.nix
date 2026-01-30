@@ -21,5 +21,8 @@ in {
       graphics.enable = true;
       fonts.enable = true;
     };
+
+    # Enable LAN services for server
+    yvan.networking.lan-services.enable = true;
   };
 }

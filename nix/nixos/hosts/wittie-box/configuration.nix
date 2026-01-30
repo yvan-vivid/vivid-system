@@ -6,22 +6,11 @@
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  networking.firewall = {
-    allowedTCPPortRanges = [
-      {
-        from = 13000;
-        to = 13999;
-      }
-    ];
-
-    allowedTCPPorts = [8096 8020];
-    allowedUDPPorts = [7359];
-  };
-
   yvan = {
     name = "wittie-box";
     primary = "yvan";
 
+    machine.server.enable = true;
     dev.full = true;
 
     services = {

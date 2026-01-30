@@ -20,8 +20,6 @@ in {
         nerd-fonts.fira-code
         nerd-fonts.open-dyslexic
         google-fonts
-        #helvetica-neue-lt-std
-        #ubuntu_font_family
       ];
       fontconfig = {
         defaultFonts = {
