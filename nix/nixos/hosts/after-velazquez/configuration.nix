@@ -1,21 +1,26 @@
 # Yvan Vivid - 'after-velazquez' NixOS config
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 
-  # this machine easily gets torched
-  powerManagement.cpuFreqGovernor = "conservative";
   boot.kernelParams = [
     "amd_pstate_epp=power"
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
 
   services = {
-    # `thermald` only works for intel
-    thermald.enable = false;
     resolved.extraConfig = ''
       DNSStubListener=no
     '';
@@ -32,6 +37,10 @@
       docker.enable = true;
       ssh.enable = true;
       media-server.enable = true;
+    };
+
+    media = {
+      rocm.enable = true;
     };
 
     environments = {

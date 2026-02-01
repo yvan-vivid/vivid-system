@@ -17,7 +17,6 @@
 
     # Power / thermal
     services = {
-      thermald.enable = lib.mkDefault true;
       upower.enable = true;
     };
 

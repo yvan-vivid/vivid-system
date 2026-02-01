@@ -1,10 +1,21 @@
 # Yvan Vivid - 'wittie-box' NixOS config
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc
+    inputs.nixos-hardware.nixosModules.common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
+
+  # Enable thermald for Intel thermal management
+  services.thermald.enable = true;
 
   yvan = {
     name = "wittie-box";
