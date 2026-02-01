@@ -4,13 +4,13 @@
   inputs,
   ...
 }: {
-  imports = [
+  imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
-    inputs.nixos-hardware.nixosModules.common-pc
-    inputs.nixos-hardware.nixosModules.common-pc-ssd
-    inputs.nixos-hardware.nixosModules.common-hidpi
+    common-cpu-amd
+    common-gpu-amd
+    common-pc
+    common-pc-ssd
+    common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
@@ -30,7 +30,10 @@
     name = "after-velazquez";
     primary = "hexxiiiz";
 
-    machine.server.enable = true;
+    machine = {
+      server.enable = true;
+      desktop.enable = true;
+    };
     dev.full = true;
 
     services = {

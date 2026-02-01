@@ -4,17 +4,16 @@
   inputs,
   ...
 }: {
-  imports = [
+  imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-    inputs.nixos-hardware.nixosModules.common-pc
-    inputs.nixos-hardware.nixosModules.common-hidpi
+    common-cpu-intel
+    common-gpu-intel
+    common-pc
+    common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  # Enable thermald for Intel thermal management
   services.thermald.enable = true;
 
   yvan = {
@@ -31,10 +30,6 @@
 
     environments = {
       runtime.enable = true;
-      graphical = {
-        sway.enable = true;
-        apps.enable = true;
-      };
     };
   };
 }

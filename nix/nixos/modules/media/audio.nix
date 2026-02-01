@@ -4,9 +4,13 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.yvan.media.audio;
 in {
+  options.yvan.media.audio = {
+    enable = mkEnableOption "Audio support";
+  };
+
   config = mkIf cfg.enable {
     services.pipewire = {
       enable = true;

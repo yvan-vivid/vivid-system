@@ -4,21 +4,18 @@
   pkgs,
   inputs,
   ...
-}:
-# inherit (lib);
-{
-  imports = [
+}: {
+  imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    common-cpu-intel
+    common-gpu-intel
+    common-pc-laptop
+    common-pc-laptop-ssd
   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_6_18;
 
-    # Surface Laptop Go specific tweaks
     kernelParams = [
       # Fix screen tearing on Surface Laptop Go
       "i915.enable_psr=0"
@@ -30,10 +27,7 @@
   # Non-standard efi boot mount
   boot.loader.efi.efiSysMountPoint = lib.mkForce "/boot/efi";
 
-  # For the ambient light sensor
   hardware.sensor.iio.enable = true;
-
-  # Enable thermald for Intel thermal management
   services.thermald.enable = true;
 
   yvan = {

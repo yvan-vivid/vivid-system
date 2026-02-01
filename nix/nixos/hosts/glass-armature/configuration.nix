@@ -4,15 +4,13 @@
   inputs,
   ...
 }: {
-  imports = [
+  imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
-    inputs.nixos-hardware.nixosModules.common-hidpi
+    framework-desktop-amd-ai-max-300-series
+    common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
-
-  # boot.kernelParams = [];
 
   services = {
     fwupd.enable = true;
@@ -22,7 +20,10 @@
     name = "glass-armature";
     primary = "hexxiiiz";
 
-    machine.server.enable = true;
+    machine = {
+      server.enable = true;
+      desktop.enable = true;
+    };
     dev.full = true;
 
     services = {

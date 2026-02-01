@@ -12,10 +12,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Enable all media modules for laptop
     yvan.media = {
       audio.enable = true;
-      graphics.enable = true;
       fonts.enable = true;
     };
 

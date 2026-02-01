@@ -1,9 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
+    ./desktop.nix
     ./laptop.nix
     ./server.nix
   ];

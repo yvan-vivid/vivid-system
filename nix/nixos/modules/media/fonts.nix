@@ -5,9 +5,13 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.yvan.media.fonts;
 in {
+  options.yvan.media.fonts = {
+    enable = mkEnableOption "Font management";
+  };
+
   config = mkIf cfg.enable {
     fonts = {
       fontDir.enable = true;
