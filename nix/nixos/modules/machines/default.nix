@@ -1,9 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
+    ./desktop.nix
     ./laptop.nix
     ./server.nix
   ];
@@ -17,7 +14,6 @@
 
     # Power / thermal
     services = {
-      thermald.enable = lib.mkDefault true;
       upower.enable = true;
     };
 

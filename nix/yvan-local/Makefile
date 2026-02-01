@@ -1,4 +1,4 @@
-.PHONY: check build install
+.PHONY: check build install diff
 
 all: check
 
@@ -16,3 +16,4 @@ update-source:
 
 update:
 	nix profile upgrade nix/yvan-local
+

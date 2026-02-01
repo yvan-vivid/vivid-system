@@ -2,28 +2,33 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
-}:
-# inherit (lib);
-{
-  imports = [
+}: {
+  imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
+    common-cpu-intel
+    common-gpu-intel
+    common-pc-laptop
+    common-pc-laptop-ssd
   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_6_18;
 
     kernelParams = [
-      # TODO: Do I need this?
-      # "mem_sleep_default=deep"
+      # Fix screen tearing on Surface Laptop Go
+      "i915.enable_psr=0"
+      # Enable S0ix "Modern Standby" for better sleep/suspend
+      "mem_sleep_default=deep"
     ];
   };
 
   # Non-standard efi boot mount
   boot.loader.efi.efiSysMountPoint = lib.mkForce "/boot/efi";
 
-  # For the ambient light sensor
   hardware.sensor.iio.enable = true;
+  services.thermald.enable = true;
 
   yvan = {
     name = "red-arrow";

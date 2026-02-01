@@ -1,4 +1,4 @@
-# Yvan Vivid - 'after-velazquez' NixOS config
+# Yvan Vivid - 'glass-armature' NixOS config
 {
   pkgs,
   inputs,
@@ -6,28 +6,18 @@
 }: {
   imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
-    common-cpu-amd
-    common-gpu-amd
-    common-pc
-    common-pc-ssd
+    framework-desktop-amd-ai-max-300-series
     common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 
-  boot.kernelParams = [
-    "amd_pstate_epp=power"
-  ];
-  boot.kernel.sysctl."net.ipv4.ip_forward" = true;
-
   services = {
-    resolved.extraConfig = ''
-      DNSStubListener=no
-    '';
+    fwupd.enable = true;
   };
 
   yvan = {
-    name = "after-velazquez";
+    name = "glass-armature";
     primary = "hexxiiiz";
 
     machine = {
@@ -39,7 +29,6 @@
     services = {
       docker.enable = true;
       ssh.enable = true;
-      media-server.enable = true;
     };
 
     media = {

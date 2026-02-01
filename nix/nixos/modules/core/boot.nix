@@ -3,11 +3,18 @@
 # If I do end up needing GRUB again, I will make this a module with options
 #
 # There are some kernel module options here that I'm not sure I need
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
   };
 
   config = {
+    # Default to LTS kernel (6.12), hosts can override
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
+
     # TODO: Do I need this?
     # boot.initrd.kernelModules = ["i915"];
     # boot.kernelModules = ["tun"];

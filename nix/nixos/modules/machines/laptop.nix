@@ -12,7 +12,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO: DE + full fonts
+    yvan.media = {
+      audio.enable = true;
+      fonts.enable = true;
+    };
 
     services = {
       auto-cpufreq.enable = true;

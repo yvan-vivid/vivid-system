@@ -1,27 +1,26 @@
 # Yvan Vivid - 'wittie-box' NixOS config
-{pkgs, ...}: {
-  imports = [
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
+    common-cpu-intel
+    common-gpu-intel
+    common-pc
+    common-hidpi
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  networking.firewall = {
-    allowedTCPPortRanges = [
-      {
-        from = 13000;
-        to = 13999;
-      }
-    ];
-
-    allowedTCPPorts = [8096 8020];
-    allowedUDPPorts = [7359];
-  };
+  services.thermald.enable = true;
 
   yvan = {
     name = "wittie-box";
     primary = "yvan";
 
+    machine.server.enable = true;
     dev.full = true;
 
     services = {
@@ -31,10 +30,6 @@
 
     environments = {
       runtime.enable = true;
-      graphical = {
-        sway.enable = true;
-        apps.enable = true;
-      };
     };
   };
 }

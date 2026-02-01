@@ -1,45 +1,34 @@
-# Yvan Vivid - NixOS Flake
-# Based on some inspirations:
-#   `Misterio77/nix-starter-configs`
-#   `Andrey0189/nixos-config`
-#   and other resources
 {
   description = "Yvan Vivid's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs: let
-    inherit (inputs.self) overlays;
     inherit (inputs.nixpkgs) lib;
     inherit (lib) nixosSystem;
+    inherit (builtins) attrNames readDir listToAttrs;
     system = "x86_64-linux";
-    overlayParams = {inherit inputs system;};
-    overlaysToApply = [overlays.version-refs];
-    overlayMod = {nixpkgs.overlays = overlaysToApply;};
-    commonModules = [./modules overlayMod];
-  in {
-    overlays = import ./overlays overlayParams;
-
-    # Your custom packages
-    # packages = import ./pkgs inputs.nixos.legacyPackages.${system};
-
-    # Formatter for your nix files, available through 'nix fmt'
-    # formatter = edge.legacyPackages.${system}.alejandra;
-
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    # nixosModules = import ./modules/nixos;
-
-    nixosConfigurations = {
-      red-arrow = nixosSystem {
-        modules = [./hosts/red-arrow/configuration.nix] ++ commonModules;
-      };
-      after-velazquez = nixosSystem {
-        modules = [./hosts/after-velazquez/configuration.nix] ++ commonModules;
-      };
+    pkgs-edge = import inputs.nixpkgs-edge {
+      inherit system;
+      config.allowUnfree = true;
     };
+    commonModules = [./modules];
+    hostDirs = attrNames (readDir ./hosts);
+    buildHost = host:
+      nixosSystem {
+        inherit system;
+        specialArgs = {inherit inputs pkgs-edge;};
+        modules = [./hosts/${host}/configuration.nix] ++ commonModules;
+      };
+    buildHostKV = host: {
+      name = host;
+      value = buildHost host;
+    };
+  in {
+    nixosConfigurations = listToAttrs (map buildHostKV hostDirs);
   };
 }
