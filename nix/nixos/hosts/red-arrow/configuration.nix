@@ -21,6 +21,9 @@
       "i915.enable_psr=0"
       # Enable S0ix "Modern Standby" for better sleep/suspend
       "mem_sleep_default=deep"
+      # Enable Intel GPU fixed function encoder for hardware encoding
+      # Required for wl-screenrec and other VAAPI encoding applications
+      "i915.enable_guc=2"
     ];
   };
 
