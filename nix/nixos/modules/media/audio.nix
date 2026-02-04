@@ -15,6 +15,9 @@ in {
     services.pipewire = {
       enable = true;
 
+      # Enable wireplumber as the session manager
+      wireplumber.enable = true;
+
       # Support for legacy adapters
       alsa = {
         enable = true;

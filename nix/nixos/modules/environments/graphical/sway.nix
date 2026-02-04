@@ -13,10 +13,14 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Expanded xdg portal configuration for screen sharing support
     xdg = {
       portal = {
         enable = true;
         wlr.enable = true;
+        # Add the actual portal implementation package
+        extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+        configPackages = [ pkgs.xdg-desktop-portal-wlr ];
       };
       sounds.enable = true;
       mime.enable = true;
@@ -51,6 +55,7 @@ in {
         grim
         wl-clipboard
         wev
+        wl-screenrec  # Screen recording utility for testing
 
         # DE Apps
         alacritty
