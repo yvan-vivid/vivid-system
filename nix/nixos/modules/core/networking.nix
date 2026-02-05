@@ -20,7 +20,8 @@ in {
         hosts = {
           "127.0.0.1" = ["localhost.localdomain" "localhost"];
           "192.168.68.66" = ["red-arrow.localdomain" "red-arrow"];
-          "192.168.68.72" = ["after-velazquez.localdomain" "after-velazquez"];
+          "192.168.68.65" = ["glass-armature.localdomain" "glass-armature"];
+          "192.168.68.75" = ["after-velazquez.localdomain" "after-velazquez"];
           "192.168.68.67" = ["wittie-box.localdomain" "wittie-box"];
           "192.168.69.62" = ["yvone.localdomain" "yvone"];
           "192.168.68.59" = ["mini.localdomain" "mini"];
