@@ -13,20 +13,18 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # Comprehensive xdg portal configuration for screen sharing support
-    # Fixes Zoom and other apps that need portals on Wayland/Sway
+    programs.xwayland.enable = true;
+
     xdg = {
       portal = {
         enable = true;
         wlr.enable = true;
-        # Add both wlr and gtk portals for maximum compatibility
-        # gtk portal serves as fallback for apps that don't support wlr directly
-        extraPortals = [ 
-          pkgs.xdg-desktop-portal-wlr 
+        extraPortals = [
+          pkgs.xdg-desktop-portal-wlr
           pkgs.xdg-desktop-portal-gtk
         ];
-        configPackages = [ 
-          pkgs.xdg-desktop-portal-wlr 
+        configPackages = [
+          pkgs.xdg-desktop-portal-wlr
           pkgs.xdg-desktop-portal-gtk
         ];
       };
@@ -34,19 +32,16 @@ in {
       mime.enable = true;
     };
 
-    # Ensure portal files are linked where apps expect them
-    # This fixes apps like Zoom that look in /usr/share/xdg-desktop-portal/
-    environment.pathsToLink = [ 
-      "/share/xdg-desktop-portal" 
+    environment.pathsToLink = [
+      "/share/xdg-desktop-portal"
       "/share/applications"
       "/share/dbus-1"
     ];
 
-    # Explicitly install the base portal package and GTK portal
     environment.systemPackages = with pkgs; [
-      xdg-desktop-portal      # Base portal infrastructure
-      xdg-desktop-portal-gtk  # GTK fallback portal
-      xdg-desktop-portal-wlr  # WLR portal for Sway
+      xdg-desktop-portal # Base portal infrastructure
+      xdg-desktop-portal-gtk # GTK fallback portal
+      xdg-desktop-portal-wlr # WLR portal for Sway
     ];
 
     # Create portal configuration for Sway
@@ -62,6 +57,26 @@ in {
 
     programs.sway = {
       enable = true;
+
+      # Enable XWayland support for X11 applications
+      xwayland.enable = true;
+
+      # Enable GTK features for better app compatibility
+      wrapperFeatures.gtk = true;
+
+      # Set up session environment variables for Wayland and X11 apps
+      extraSessionCommands = ''
+        export XDG_SESSION_TYPE=wayland
+        export XDG_CURRENT_DESKTOP=sway
+        export QT_QPA_PLATFORM=wayland
+        export _JAVA_AWT_WM_NONREPARENTING=1
+        export SDL_VIDEODRIVER=wayland
+        export NIXOS_OZONE_WL=1
+
+        # Import environment into systemd for services
+        systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP DISPLAY WAYLAND_DISPLAY
+      '';
+
       extraPackages = with pkgs; [
         # Sway extras
         swaybg
@@ -87,7 +102,7 @@ in {
         grim
         wl-clipboard
         wev
-        wl-screenrec  # Screen recording utility for testing
+        wl-screenrec # Screen recording utility for testing
 
         # DE Apps
         alacritty
@@ -97,6 +112,8 @@ in {
         # Other
         xdg-utils
         libnotify
+        qt5.qtwayland # Qt5 Wayland platform plugin
+        qt6.qtwayland # Qt6 Wayland platform plugin
       ];
     };
   };
