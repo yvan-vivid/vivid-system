@@ -25,7 +25,7 @@
         duf
 
         # system info
-        neofetch
+        fastfetch
         inxi
 
         # file transfer

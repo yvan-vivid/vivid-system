@@ -26,6 +26,8 @@
     '';
   };
 
+  networking.firewall.allowedUDPPorts = [50873];
+
   yvan = {
     name = "after-velazquez";
     primary = "hexxiiiz";
