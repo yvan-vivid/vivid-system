@@ -1,4 +1,9 @@
 # Yvan Vivid - 'glass-armature' NixOS config
+let
+  gttLimitGB = 112;
+  gibToMib = gib: gib * 1024;
+  gibToPages = gib: gib * 262144;
+in
 {
   pkgs,
   inputs,
@@ -11,6 +16,12 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
+
+  boot.kernelParams = [
+    "iommu=pt"
+    "amdgpu.gttsize=${toString (gibToMib gttLimitGB)}"
+    "ttm.pages_limit=${toString (gibToPages gttLimitGB)}"
+  ];
 
   services = {
     fwupd.enable = true;
