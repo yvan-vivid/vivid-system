@@ -1,7 +1,7 @@
 HOSTNAME := $(shell hostname)
 FLAKE := ".\#$(HOSTNAME)"
 
-.PHONY: check dry-build build boot switch diff diff-derivation
+.PHONY: check dry-build build boot switch diff diff-derivation boot-params diff-boot
 
 all: check
 
@@ -35,3 +35,11 @@ diff: result
 # Diff using nix-diff (shows derivation-level changes)
 diff-derivation: result
 	nix-diff /run/current-system result
+
+# Print kernel parameters from the built system
+boot-params: result
+	@scripts/diff-boot-params.sh build
+
+# Diff kernel parameters between current system and built result
+diff-boot: result
+	@scripts/diff-boot-params.sh diff
