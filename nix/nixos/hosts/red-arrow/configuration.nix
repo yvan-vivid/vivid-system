@@ -14,7 +14,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.linuxPackages_6_19;
 
     kernelParams = [
       # Fix screen tearing on Surface Laptop Go
