@@ -28,6 +28,9 @@ boot:
 switch:
 	nixos-rebuild switch --flake $(FLAKE)
 
+update-source:
+	nix flake update --flake .
+
 # Diff using nvd (shows package-level changes)
 diff: result
 	nvd diff /run/current-system result
