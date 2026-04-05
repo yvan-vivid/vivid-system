@@ -8,6 +8,10 @@
         ty
         ruff
 
+        # node
+        nodejs
+        bun
+
         # lua
         luarocks
         stylua

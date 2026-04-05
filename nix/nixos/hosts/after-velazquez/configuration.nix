@@ -26,7 +26,10 @@
     '';
   };
 
-  networking.firewall.allowedUDPPorts = [50873];
+  networking.firewall = {
+    allowedTCPPorts = [80 443];
+    allowedUDPPorts = [443 50873];
+  };
 
   yvan = {
     name = "after-velazquez";

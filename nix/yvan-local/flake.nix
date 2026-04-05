@@ -13,7 +13,6 @@
 
       imports = [
         ./modules/python-env.nix
-        ./modules/node-env.nix
         ./modules/production.nix
         ./modules/dev-tools.nix
         ./modules/term-env.nix

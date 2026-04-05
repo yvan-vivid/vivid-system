@@ -8,7 +8,6 @@
       name = "yvan-local";
       paths = with config.packages; [
         yvan-python-env
-        yvan-node-env
         yvan-production
         yvan-dev-tools
         yvan-term-env
