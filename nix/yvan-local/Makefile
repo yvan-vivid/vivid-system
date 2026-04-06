@@ -1,4 +1,4 @@
-.PHONY: all check build install update-source update diff diff-derivation
+.PHONY: all check build install update-source update diff diff-derivation rebuild clean-build
 
 all: check
 
@@ -15,6 +15,11 @@ result:
 # Phony target that depends on result
 build: result
 	@echo "Build complete: result -> $$(readlink result)"
+
+rebuild: clean-build build
+
+clean-build:
+	rm -f result
 
 install:
 	nix profile install .

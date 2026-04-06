@@ -1,0 +1,25 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "make check": "allow",
+      "make check-local": "allow",
+      "make diff": "allow"
+    }
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "bash": {
+          "*": "ask",
+          "make check": "allow",
+          "make check-local": "allow",
+          "make diff": "allow",
+          "make build": "allow",
+          "rm *result*": "allow"
+        }
+      }
+    }
+  }
+}

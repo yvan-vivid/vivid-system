@@ -1,5 +1,5 @@
 {...}: {
-  perSystem = {pkgs, ...}: {
+  perSystem = {pkgs, lib, ...}: {
     packages.yvan-apps = pkgs.buildEnv {
       name = "yvan-apps";
       paths = with pkgs; [
@@ -22,16 +22,17 @@
         # social networking
         # zoom-us
         signal-desktop
-        discord
         telegram-desktop
 
         # browsers
-        firefox-bin
         chromium
 
         # emulation
         gzdoom
         higan
+      ] ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+        discord
+        firefox-bin
         zsnes
       ];
     };

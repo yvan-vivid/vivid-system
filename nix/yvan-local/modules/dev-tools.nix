@@ -57,7 +57,7 @@
         nixd
 
         # AI/ML development
-        inputs.opencode.packages."${pkgs.system}".default
+        inputs.opencode.packages."${pkgs.stdenv.hostPlatform.system}".default
       ];
     };
   };

@@ -1,7 +1,7 @@
 HOSTNAME := $(shell hostname)
 FLAKE := ".\#$(HOSTNAME)"
 
-.PHONY: check dry-build build boot switch diff diff-derivation boot-params diff-boot
+.PHONY: check dry-build build boot switch diff diff-derivation boot-params diff-boot rebuild clean-build
 
 all: check
 
@@ -21,6 +21,11 @@ result:
 # Phony target that depends on result
 build: result
 	@echo "Build complete: result -> $$(readlink result)"
+
+rebuild: clean-build build
+
+clean-build:
+	rm -f result
 
 boot:
 	nixos-rebuild boot --flake $(FLAKE)
