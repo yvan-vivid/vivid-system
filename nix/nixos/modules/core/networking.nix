@@ -33,7 +33,13 @@ in {
         };
       };
 
-      services.resolved.enable = lib.mkDefault true;
+      services.resolved = {
+        enable = lib.mkDefault true;
+        extraConfig = ''
+          DNS=1.1.1.2 1.0.0.2 2606:4700:4700::1112 2606:4700:4700::1002
+          DNSSEC=no
+        '';
+      };
 
       yvan.users.power-user.groups = [
         "network"
