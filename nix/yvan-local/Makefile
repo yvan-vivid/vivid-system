@@ -1,4 +1,4 @@
-.PHONY: all check build install update-source update diff diff-derivation rebuild clean-build
+.PHONY: all check check-local build install update-source update diff diff-derivation rebuild clean-build dry-build
 
 all: check
 
@@ -7,6 +7,10 @@ check:
 
 check-local:
 	nix flake check
+
+# Dry-run build to see what would be built without actually building
+dry-build:
+	nix build . --dry-run
 
 # Real target for the result symlink
 result:
