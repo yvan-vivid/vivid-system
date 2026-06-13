@@ -13,18 +13,12 @@
     common-hidpi
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPackages = pkgs.linuxPackages_7_0;
 
   boot.kernelParams = [
     "amd_pstate_epp=power"
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
-
-  services = {
-    resolved.extraConfig = ''
-      DNSStubListener=no
-    '';
-  };
 
   networking.firewall = {
     allowedTCPPorts = [80 443];

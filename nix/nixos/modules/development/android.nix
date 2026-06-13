@@ -2,6 +2,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -12,10 +13,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs = {
-      adb.enable = true;
-    };
-
+    environment.systemPackages = [
+      pkgs.android-tools
+    ];
     yvan.users.power-user.groups = [
       "adbusers"
     ];
