@@ -35,6 +35,10 @@
         socat
         traceroute
         xh
+        tcpdump
+        speedtest-go
+        openssl
+        nftables
 
         # file tools
         ansifilter
@@ -54,10 +58,19 @@
         btop
         systemctl-tui
         gitui
+        lazygit
+        lazydocker
+        radeontop
+        qrencode
+        oxker
 
         # email
         aerc
         nomacs
+
+        # nix
+        nvd
+        nix-diff
 
         # utilities
         ueberzugpp

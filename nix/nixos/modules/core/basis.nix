@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   nix.settings = {
     experimental-features = "nix-command flakes";
 
@@ -8,6 +12,12 @@
 
   # Nix setup
   nixpkgs.config.allowUnfree = true;
+
+  # Nix-related
+  environment.systemPackages = with pkgs; [
+    nvd
+    nix-diff
+  ];
 
   # Localization
   time.timeZone = "America/New_York";

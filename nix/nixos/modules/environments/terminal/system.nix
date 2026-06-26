@@ -14,5 +14,8 @@
     powertop
     usbutils
     pciutils
+
+    # GPU
+    amdgpu_top
   ];
 }
