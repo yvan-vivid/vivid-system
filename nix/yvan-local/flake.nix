@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    opencode.url = "git+ssh://after-velazquez/src/repos/forks/ai/opencode?ref=dev";
+    opencode.url = "github:yvan-vivid/opencode?ref=stable-pin";
   };
 
   outputs = inputs @ {flake-parts, ...}:

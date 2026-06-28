@@ -70,18 +70,18 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1782422919,
-        "narHash": "sha256-yAZ5FoksV7HQtHc29h4Jak2Y5rlruAs2c9fnAEH+y98=",
-        "ref": "dev",
-        "rev": "5f61d21487fad090a7bf4da95ab8211032b7768d",
-        "revCount": 14457,
-        "type": "git",
-        "url": "ssh://after-velazquez/src/repos/forks/ai/opencode"
+        "lastModified": 1782609943,
+        "narHash": "sha256-p6yPCdBkOG2mJBc19+FqZDEGjLZvfQM6+57atR+9C1o=",
+        "owner": "yvan-vivid",
+        "repo": "opencode",
+        "rev": "072507a24b1d53febadfd4873c35e024a1bebf71",
+        "type": "github"
       },
       "original": {
-        "ref": "dev",
-        "type": "git",
-        "url": "ssh://after-velazquez/src/repos/forks/ai/opencode"
+        "owner": "yvan-vivid",
+        "ref": "stable-pin",
+        "repo": "opencode",
+        "type": "github"
       }
     },
     "root": {
